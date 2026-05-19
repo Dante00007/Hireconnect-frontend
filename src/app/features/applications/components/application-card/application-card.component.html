@@ -1,0 +1,90 @@
+<div class="application-card hover-lift">
+
+  <!-- Header -->
+  <div class="card-header">
+
+    <div>
+
+      <h2>
+        {{ application.jobTitle }}
+      </h2>
+
+      <p>
+        Recruiter:
+        {{ application.recruiterName }}
+      </p>
+
+    </div>
+
+    <app-status-badge
+      [status]="application.status"
+    />
+
+  </div>
+
+  <!-- Info -->
+  <div class="card-info">
+
+    <span>
+      📅 Applied:
+      {{
+        application.appliedAt
+          | date : 'mediumDate'
+      }}
+    </span>
+
+  </div>
+
+  <!-- Cover Letter -->
+  @if(application.coverLetter) {
+
+    <div class="cover-letter">
+
+      <h3>
+        Cover Letter
+      </h3>
+
+      <p>
+        {{ application.coverLetter }}
+      </p>
+
+    </div>
+
+  }
+
+  <!-- Actions -->
+  <div class="actions">
+
+    <a
+
+      [href]="application.resumeUrl"
+
+      target="_blank"
+
+      class="resume-btn"
+
+    >
+      View Resume
+    </a>
+
+    @if(
+      application.status
+        .toLowerCase() === 'applied'
+    ) {
+
+      <button
+        class="withdraw-btn"
+        (click)="
+          withdraw.emit(
+            application.applicationId
+          )
+        "
+      >
+        Withdraw
+      </button>
+
+    }
+
+  </div>
+
+</div>

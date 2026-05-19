@@ -1,0 +1,56 @@
+<div class="chart-card">
+
+  <div class="chart-header">
+
+    <h2>
+      Hiring Pipeline
+    </h2>
+
+    <p>
+      Application status distribution
+    </p>
+
+  </div>
+
+  <div class="chart-body">
+
+    @for(
+      entry of entries;
+      track entry[0]
+    ) {
+
+      <div class="chart-row">
+
+        <!-- Label -->
+        <div class="label">
+
+          {{ entry[0] }}
+
+        </div>
+
+        <!-- Bar -->
+        <div class="bar-wrapper">
+
+          <div
+            class="bar"
+            [style.width.%]="
+              getBarWidth(entry[1])
+            "
+          ></div>
+
+        </div>
+
+        <!-- Value -->
+        <div class="value">
+
+          {{ entry[1] }}
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

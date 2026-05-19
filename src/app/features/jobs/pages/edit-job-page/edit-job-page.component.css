@@ -1,0 +1,19 @@
+.edit-job-page {
+  padding: 2rem;
+
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fafc,
+      #eef2ff
+    );
+}
+
+.error-inline {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

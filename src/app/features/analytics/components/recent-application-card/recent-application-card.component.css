@@ -1,0 +1,51 @@
+.application-card {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 1.2rem;
+
+  border: 1px solid #e2e8f0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+.application-card h3 {
+  margin: 0;
+
+  color: var(--primary-color);
+}
+
+.application-card p {
+  margin-top: 0.4rem;
+
+  color: #64748b;
+}
+
+.right-section {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 0.5rem;
+}
+
+.status {
+  background: #dbeafe;
+
+  color: #2563eb;
+
+  padding: 0.4rem 0.8rem;
+
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+
+  font-weight: 700;
+}

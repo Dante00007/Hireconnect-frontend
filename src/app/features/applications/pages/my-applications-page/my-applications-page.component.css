@@ -1,0 +1,60 @@
+.my-applications-page {
+  padding: 2rem;
+
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fafc,
+      #eef2ff
+    );
+}
+
+.page-hero {
+  text-align: center;
+
+  margin-bottom: 2rem;
+}
+
+.page-hero h1 {
+  font-size: 3rem;
+
+  margin-bottom: 1rem;
+
+  color: var(--primary-color);
+}
+
+.page-hero p {
+  color: #64748b;
+
+  font-size: 1.1rem;
+}
+
+.applications-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(380px, 1fr));
+
+  gap: 1.5rem;
+}
+
+/* Empty */
+.empty-state {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 4rem 2rem;
+
+  text-align: center;
+
+  border: 1px solid #e2e8f0;
+}
+
+.empty-icon {
+  font-size: 5rem;
+
+  margin-bottom: 1rem;
+}

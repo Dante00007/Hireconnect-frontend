@@ -1,0 +1,149 @@
+<div class="job-details-page">
+
+  @if(loading()) {
+
+  <div class="loading-section">
+
+    <div class="loader"></div>
+
+    <p>Loading job...</p>
+
+  </div>
+
+  }@else if(error()) {
+
+    <app-error-state title="Failed to Load Job" [message]="error()!" buttonText="Retry"
+      (retry)="loadJob()" />  
+  }
+  @else if(job()) {
+
+  <div class="job-container animate-fade-in">
+
+    <!-- Hero -->
+    <div class="job-hero">
+
+      <div>
+
+        <span class="job-category">
+
+          {{ job()?.category }}
+
+        </span>
+
+        <h1>
+
+          {{ job()?.title }}
+
+        </h1>
+
+        <p class="job-location">
+
+          📍 {{ job()?.location }}
+
+        </p>
+
+      </div>
+
+      <div class="salary-card">
+
+        <span>Salary Range</span>
+
+        <h2>
+
+          ₹ {{ job()?.salaryMin }}
+          -
+          ₹ {{ job()?.salaryMax }}
+
+        </h2>
+
+      </div>
+
+    </div>
+
+    <!-- Meta -->
+    <div class="meta-grid">
+
+      <div class="meta-card">
+
+        <h3>Job Type</h3>
+
+        <p>{{ job()?.type }}</p>
+
+      </div>
+
+      <div class="meta-card">
+
+        <h3>Experience</h3>
+
+        <p>
+          {{ job()?.experienceRequired }}
+          years
+        </p>
+
+      </div>
+
+      <div class="meta-card">
+
+        <h3>Posted By</h3>
+
+        <p>
+          Recruiter #{{ job()?.postedByName }}
+        </p>
+
+      </div>
+
+    </div>
+
+    <!-- Skills -->
+    <div class="content-card">
+
+      <h2>Required Skills</h2>
+
+      <div class="skills">
+
+        @for(skill of job()?.skills; track skill) {
+
+        <span class="skill-chip">
+
+          {{ skill }}
+
+        </span>
+
+        }
+
+      </div>
+
+    </div>
+
+    <!-- Description -->
+    <div class="content-card">
+
+      <h2>Job Description</h2>
+
+      <p class="description">
+
+        {{ job()?.description }}
+
+      </p>
+
+    </div>
+
+    <!-- Apply -->
+    <div class="apply-section">
+
+      <button class="apply-btn hover-lift" (click)="openApplyModal()">
+        Apply Now
+      </button>
+
+    </div>
+
+  </div>
+
+  }
+  @if(showApplyModal()) {
+
+  <app-apply-job-modal [jobId]="job()!.jobId" (closed)="closeApplyModal()" (submitted)="onApplicationSubmitted()" />
+
+  }
+
+</div>

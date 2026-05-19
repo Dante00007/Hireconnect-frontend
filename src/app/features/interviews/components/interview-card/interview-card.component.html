@@ -1,0 +1,151 @@
+<div class="interview-card hover-lift">
+
+  <!-- Header -->
+  <div class="header">
+
+    <div>
+
+      <h2>
+        {{ interview.jobTitle }}
+      </h2>
+
+      <p>
+        Candidate:
+        {{ interview.candidateName }}
+      </p>
+
+    </div>
+
+    <app-interview-status-badge
+      [status]="interview.status"
+    />
+
+  </div>
+
+  <!-- Details -->
+  <div class="details-grid">
+
+    <div class="detail-item">
+
+      <span>📅</span>
+
+      <p>
+        {{
+          interview.scheduledAt
+            | date : 'medium'
+        }}
+      </p>
+
+    </div>
+
+    <div class="detail-item">
+
+      <span>⏱️</span>
+
+      <p>
+        {{
+          interview.durationMinutes
+        }} mins
+      </p>
+
+    </div>
+
+    <div class="detail-item">
+
+      <span>🎥</span>
+
+      <p>
+        {{ interview.interviewMode }}
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- Meeting -->
+  @if(
+    interview.interviewMode ===
+    'Online' && interview.status !== 'Cancelled'
+  ) {
+
+    <a
+
+      [href]="interview.meetLink"
+
+      target="_blank"
+
+      class="meeting-link"
+
+    >
+      Join Meeting
+    </a>
+
+  }
+
+  @else {
+
+    <div class="location-box">
+
+      📍 {{ interview.location }}
+
+    </div>
+
+  }
+
+  <!-- Notes -->
+  @if(interview.notes) {
+
+    <div class="notes">
+
+      <h3>
+        Notes
+      </h3>
+
+      <p>
+        {{ interview.notes }}
+      </p>
+
+    </div>
+
+  }
+
+  <!-- Actions -->
+  <div class="actions">
+
+    @if(
+      role === 'Candidate'
+      &&
+      interview.status === 'Scheduled'
+    ) {
+
+      <button
+        class="confirm-btn"
+        (click)="
+          confirm.emit(
+            interview.interviewId
+          )
+        "
+      >
+        Confirm
+      </button>
+
+    }
+
+    @if( role === 'Recruiter' && interview.status !== 'Cancelled') {
+
+      <button
+        class="cancel-btn"
+        (click)="
+          cancel.emit(
+            interview.interviewId
+          )
+        "
+      >
+        Cancel Interview
+      </button>
+
+    }
+
+  </div>
+
+</div>

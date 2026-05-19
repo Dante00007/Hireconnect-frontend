@@ -1,0 +1,94 @@
+<div class="candidate-jobs-page">
+
+  <!-- Hero -->
+  <div class="jobs-hero animate-fade-in">
+
+    <h1>
+      Discover Your Dream Job 🚀
+    </h1>
+
+    <p>
+      Explore opportunities tailored
+      to your skills and ambitions.
+    </p>
+
+  </div>
+
+  <!-- Search -->
+  <div class="search-section animate-fade-in">
+
+    <div class="search-grid">
+
+      <input
+        type="text"
+        [(ngModel)]="search"
+        placeholder="Search by title..."
+      />
+
+      <input
+        type="text"
+        [(ngModel)]="location"
+        placeholder="Location..."
+      />
+
+      <button
+        class="search-btn hover-lift"
+        (click)="searchJobs()"
+      >
+        Search
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- Loading -->
+  @if(loading()) {
+
+    <app-page-loader message="Loading jobs..." />
+
+  }@else if(error()) {
+    <app-error-state message="Failed to load jobs." buttonText="Retry" (retry)="loadJobs()"/>
+  }
+  <!-- Empty -->
+  @else if(jobs().length === 0) {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">
+        🔍
+      </div>
+
+      <h2>No Jobs Found</h2>
+
+      <p>
+        Try adjusting your search
+        filters or check back later.
+      </p>
+
+    </div>
+
+  }
+
+  <!-- Jobs -->
+  @else {
+
+    <div class="jobs-grid">
+
+      @for(job of jobs(); track job.jobId) {
+
+        <app-job-card
+
+          [job]="job"
+
+          [showApplyButton]="true"
+
+        />
+
+      }
+
+    </div>
+
+  }
+
+</div>

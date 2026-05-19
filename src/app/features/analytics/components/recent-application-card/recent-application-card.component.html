@@ -1,0 +1,34 @@
+<div class="application-card">
+
+  <div>
+
+    <h3>
+      {{ application.candidateName }}
+    </h3>
+
+    <p>
+      {{ application.jobTitle }}
+    </p>
+
+  </div>
+
+  <div class="right-section">
+
+    <span class="status">
+
+      {{ application.status }}
+
+    </span>
+
+    <small>
+
+      {{
+        application.appliedAt
+          | date : 'mediumDate'
+      }}
+
+    </small>
+
+  </div>
+
+</div>

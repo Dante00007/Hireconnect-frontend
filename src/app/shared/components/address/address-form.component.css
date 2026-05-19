@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Card Container */
+.address-card {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 2rem;
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.08);
+
+  border: 1px solid #e2e8f0;
+
+  animation: fadeInUp 0.5s ease;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.address-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, 0.12);
+}
+
+/* Header */
+.card-header {
+  margin-bottom: 2rem;
+}
+
+.card-header h2 {
+  margin: 0;
+
+  font-size: 1.5rem;
+
+  color: var(--primary-color);
+
+  font-weight: 700;
+}
+
+.card-header p {
+  margin-top: 0.4rem;
+
+  color: #64748b;
+
+  font-size: 0.95rem;
+}
+
+/* Grid */
+.form-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1.4rem;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+/* Field */
+.form-field {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.form-field label {
+  margin-bottom: 0.55rem;
+
+  font-size: 0.95rem;
+
+  font-weight: 600;
+
+  color: var(--text-main);
+}
+
+/* Inputs */
+.form-field input {
+  padding: 0.95rem 1rem;
+
+  border-radius: 12px;
+
+  border: 1px solid #cbd5e1;
+
+  background: #f8fafc;
+
+  font-size: 0.95rem;
+
+  color: var(--text-main);
+
+  outline: none;
+
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* Focus State */
+.form-field input:focus {
+  border-color: var(--accent-color);
+
+  background: white;
+
+  box-shadow:
+    0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* Placeholder */
+.form-field input::placeholder {
+  color: #94a3b8;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+
+}

@@ -1,0 +1,69 @@
+<div class="my-applications-page">
+
+  <!-- Hero -->
+  <div class="page-hero animate-fade-in">
+
+    <h1>
+      My Applications 📄
+    </h1>
+
+    <p>
+      Track your job applications
+      and hiring progress.
+    </p>
+
+  </div>
+
+  <!-- Loading -->
+  @if(loading()) {
+
+  <app-page-loader message="Loading your applications..." />
+
+  }
+  @else if (error()) {
+    <app-error-state title="Failed to Load Applications" [message]="error()!" buttonText="Retry"
+      (retry)="loadApplications()" />
+  }
+  <!-- Empty -->
+  @else if(
+  applications().length === 0
+  ) {
+
+  <div class="empty-state">
+
+    <div class="empty-icon">
+      🚀
+    </div>
+
+    <h2>
+      No Applications Yet
+    </h2>
+
+    <p>
+      Start applying to jobs and
+      track your opportunities here.
+    </p>
+
+  </div>
+
+  }
+
+  <!-- Applications -->
+  @else {
+
+  <div class="applications-grid">
+
+    @for(
+    application of applications();
+    track application.applicationId
+    ) {
+
+    <app-application-card [application]="application" (withdraw)="withdraw($event)" />
+
+    }
+
+  </div>
+
+  }
+
+</div>

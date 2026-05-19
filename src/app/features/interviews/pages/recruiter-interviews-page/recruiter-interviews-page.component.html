@@ -1,0 +1,68 @@
+<div class="interviews-page">
+
+    <!-- Hero -->
+    <div class="page-hero animate-fade-in">
+
+        <h1>
+            Interview Pipeline 🎤
+        </h1>
+
+        <p>
+            Manage and track candidate interviews.
+        </p>
+
+    </div>
+
+    <!-- Loading -->
+    @if(loading()) {
+
+      <app-page-loader message="Loading interviews..." />
+
+    }
+    @else if(error()) {
+
+      <app-error-state title="Failed to Load Interviews" [message]="error()!" buttonText="Retry"
+        (retry)="loadInterviews()" />
+    }
+    <!-- Empty -->
+    @else if(
+    interviews().length === 0
+    ) {
+
+    <div class="empty-state">
+
+        <div class="empty-icon">
+            📭
+        </div>
+
+        <h2>
+            No Interviews Scheduled
+        </h2>
+
+        <p>
+            Scheduled interviews will appear here.
+        </p>
+
+    </div>
+
+    }
+
+    <!-- Interviews -->
+    @else {
+
+    <div class="interviews-grid">
+
+        @for(
+        interview of interviews();
+        track interview.interviewId
+        ) {
+
+        <app-interview-card [interview]="interview" role="Recruiter" (cancel)="cancelInterview($event)" />
+
+        }
+
+    </div>
+
+    }
+
+</div>

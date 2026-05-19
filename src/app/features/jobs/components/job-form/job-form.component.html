@@ -1,0 +1,188 @@
+<div class="job-form-wrapper">
+
+  <form class="job-form" [formGroup]="jobForm" (ngSubmit)="submit()">
+
+    <!-- Header -->
+    <div class="form-header animate-fade-in">
+
+      <h1>
+        {{
+        isEditMode
+        ? 'Edit Job'
+        : 'Create New Job'
+        }}
+      </h1>
+
+      <p>
+        Reach talented candidates with
+        a compelling job listing.
+      </p>
+
+    </div>
+
+    <!-- Card -->
+    <div class="form-card animate-fade-in">
+
+      <div class="form-grid">
+
+        <!-- Title -->
+        <div class="form-field full-width">
+
+          <label>Job Title</label>
+
+          <input type="text" formControlName="title" placeholder="Senior Angular Developer" />
+
+        </div>
+
+        <!-- Category -->
+        <div class="form-field">
+
+          <label>Category</label>
+
+          <input type="text" formControlName="category" placeholder="Software Development" />
+
+        </div>
+
+        <!-- Type -->
+        <div class="form-field">
+
+          <label>Job Type</label>
+
+          <select formControlName="type">
+
+            <option value="">
+              Select Type
+            </option>
+
+            <option value="Full-Time">
+              Full-Time
+            </option>
+
+            <option value="Part-Time">
+              Part-Time
+            </option>
+
+            <option value="Internship">
+              Internship
+            </option>
+
+            <option value="Remote">
+              Remote
+            </option>
+
+          </select>
+
+        </div>
+
+        <!-- Location -->
+        <div class="form-field">
+
+          <label>Location</label>
+
+          <input type="text" formControlName="location" placeholder="Bangalore" />
+
+        </div>
+
+        <!-- Experience -->
+        <div class="form-field">
+
+          <label>Experience Required</label>
+
+          <input type="number" formControlName="experienceRequired" />
+
+        </div>
+
+        <!-- Salary -->
+        <div class="form-field">
+
+          <label>Minimum Salary</label>
+
+          <input type="number" formControlName="salaryMin" />
+
+        </div>
+
+        <div class="form-field">
+
+          <label>Maximum Salary</label>
+
+          <input type="number" formControlName="salaryMax" />
+
+        </div>
+
+        <!-- Description -->
+        <div class="form-field full-width">
+
+          <label>Description</label>
+
+          <textarea rows="7" formControlName="description" placeholder="Describe role responsibilities..."></textarea>
+
+        </div>
+
+        <!-- Skills -->
+        <div class="form-field full-width">
+
+          <label>Skills Required</label>
+
+          <div class="skills-box">
+
+            <div class="skills-input-row">
+
+              <input type="text" [(ngModel)]="skillInput" [ngModelOptions]="{standalone: true}"
+                placeholder="Add skill" />
+
+              <button type="button" class="add-skill-btn" (click)="addSkill()">
+                Add
+              </button>
+
+            </div>
+
+            <div class="skills-list">
+
+              @for(skill of skills; track skill) {
+
+              <div class="skill-chip">
+
+                {{ skill }}
+
+                <button type="button" (click)="removeSkill(skill)">
+                  ✕
+                </button>
+
+              </div>
+
+              }
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    @if(error()) {
+
+    <div class="error-inline animate-fade-in">
+      {{ error() }}
+    </div>
+    }
+
+    <!-- Submit -->
+    <div class="form-actions">
+      <button type="submit" class="submit-btn hover-lift">
+        @if(!loading()) {
+          {{
+          isEditMode
+            ? 'Update Job'
+            : 'Publish Job'
+          }}
+        }@else {
+        <span class="loading-spinner"></span>
+        }
+      </button>
+    </div>
+
+  </form>
+
+</div>

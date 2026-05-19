@@ -1,0 +1,81 @@
+<div class="recruiter-applications-page">
+
+  <!-- Hero -->
+  <div class="page-hero animate-fade-in">
+
+    <h1>
+      Applicants Dashboard 👥
+    </h1>
+
+    <p>
+      Review candidates, resumes, and manage hiring progress.
+    </p>
+
+  </div>
+
+  <!-- Loading -->
+  @if(loading()) {
+
+    <div class="loading-section">
+
+      <div class="loader"></div>
+
+      <p>
+        Loading applicants...
+      </p>
+
+    </div>
+
+  }@else if(error()) {
+
+  <app-error-state title="Failed to Load Applications" [message]="error()!" buttonText="Retry"
+    (retry)="loadApplications()" />
+  }
+
+  <!-- Empty -->
+  @else if(applications().length === 0) {
+
+    <div class="empty-state animate-fade-in">
+
+      <div class="empty-icon">
+        📭
+      </div>
+
+      <h2>
+        No Applicants Yet
+      </h2>
+
+      <p>
+        Once candidates apply to this job,
+        they will appear here.
+      </p>
+
+    </div>
+
+  }
+
+  <!-- Applicants -->
+  @else {
+
+    <div class="applications-grid animate-fade-in">
+
+      @for(
+        application of applications();
+        track application.applicationId
+      ) {
+
+        <app-applicant-card
+
+          [application]="application"
+
+          (statusChanged)="updateStatus($event)"
+
+        />
+
+      }
+
+    </div>
+
+  }
+
+</div>

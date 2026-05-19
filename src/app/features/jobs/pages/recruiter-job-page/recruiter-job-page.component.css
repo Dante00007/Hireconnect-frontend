@@ -1,0 +1,85 @@
+.jobs-page {
+  padding: 2rem;
+
+  min-height: 100vh;
+
+  background:
+    linear-gradient(135deg,
+      #f8fafc,
+      #eef2ff);
+}
+
+.page-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 2rem;
+
+  gap: 1rem;
+}
+
+.page-header h1 {
+  margin: 0;
+
+  font-size: 2rem;
+
+  color: var(--primary-color);
+}
+
+.page-header p {
+  margin-top: 0.5rem;
+
+  color: #64748b;
+}
+
+.create-btn {
+  border: none;
+
+  background:
+    linear-gradient(135deg,
+      var(--accent-color),
+      var(--secondary-color));
+
+  color: white;
+
+  padding: 1rem 1.4rem;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit,
+      minmax(350px, 1fr));
+
+  gap: 2rem;
+
+  align-items: stretch;
+}
+
+/* Empty */
+.empty-state {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 4rem 2rem;
+
+  text-align: center;
+
+  border: 1px solid #e2e8f0;
+}
+
+.empty-icon {
+  font-size: 5rem;
+
+  margin-bottom: 1rem;
+}

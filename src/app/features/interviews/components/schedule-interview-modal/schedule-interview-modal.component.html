@@ -1,0 +1,166 @@
+<div class="modal-overlay">
+
+  <div class="modal-card animate-fade-in">
+
+    <!-- Header -->
+    <div class="modal-header">
+
+      <div>
+
+        <h2>
+          Schedule Interview
+        </h2>
+
+        <p>
+          Candidate:
+          {{ candidateName }}
+        </p>
+
+      </div>
+
+      <button class="close-btn" (click)="close()">
+        ✕
+      </button>
+
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="interviewForm" (ngSubmit)="submit()">
+
+      <!-- Date -->
+      <div class="form-group">
+
+        <label>
+          Interview Date & Time
+        </label>
+
+        <input type="datetime-local" formControlName="scheduledAt" />
+
+      </div>
+
+      <!-- Mode -->
+      <div class="form-group">
+
+        <label>
+          Interview Mode
+        </label>
+
+        <select formControlName="interviewMode">
+
+          @for(
+          mode of interviewModes;
+          track mode
+          ) {
+
+          <option [value]="mode">
+
+            {{ mode }}
+
+          </option>
+
+          }
+
+        </select>
+
+      </div>
+
+      <!-- Online -->
+      @if(isOnline) {
+
+      <div class="form-group">
+
+        <label>
+          Meeting Link
+        </label>
+
+        <input type="text" placeholder="
+https://meet.google.com/...
+" formControlName="meetLink" />
+
+      </div>
+
+      }
+
+      <!-- Offline -->
+      @else {
+
+      <div class="form-group">
+
+        <label>
+          Interview Location
+        </label>
+
+        <input type="text" placeholder="
+Office Address
+" formControlName="location" />
+
+      </div>
+
+      }
+
+      <!-- Duration -->
+      <div class="form-group">
+
+        <label>
+          Duration (Minutes)
+        </label>
+
+        <input type="number" formControlName="durationMinutes" />
+
+      </div>
+
+      <!-- Notes -->
+      <div class="form-group">
+
+        <label>
+          Notes
+        </label>
+
+        <textarea rows="4" formControlName="notes" placeholder="
+Interview instructions...
+"></textarea>
+
+      </div>
+
+      @if(error()) {
+
+        <div class="error-inline">
+          {{ error() }}
+        </div>
+      }
+      <!-- Error -->
+
+      <!-- Actions -->
+      <div class="actions">
+
+        <button type="button" class="cancel-btn" (click)="close()">
+          Cancel
+        </button>
+
+        <button type="submit" class="submit-btn hover-lift" [disabled]="loading()">
+
+          @if(!loading()) {
+
+          <span>
+            Schedule Interview
+          </span>
+
+          }
+
+          @else {
+
+          <span>
+            Scheduling...
+          </span>
+
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,0 +1,101 @@
+<div class="applicant-card hover-lift">
+
+  <!-- Header -->
+  <div class="header">
+
+    <div>
+
+      <h2>
+        {{ application.candidateName }}
+      </h2>
+
+      <p>
+        Applied for:
+        {{ application.jobTitle }}
+      </p>
+
+    </div>
+
+    <app-status-badge [status]="application.status" />
+
+  </div>
+
+  <!-- Info -->
+  <div class="info">
+
+    <span>
+      📅
+      {{
+      application.appliedAt
+      | date : 'medium'
+      }}
+    </span>
+
+  </div>
+
+  <!-- Cover Letter -->
+  @if(application.coverLetter) {
+
+  <div class="cover-letter">
+
+    <h3>
+      Cover Letter
+    </h3>
+
+    <p>
+      {{ application.coverLetter }}
+    </p>
+
+  </div>
+
+  }
+
+  <!-- Actions -->
+  <div class="actions">
+
+    <a [href]="application.resumeUrl" target="_blank" class="resume-btn">
+      View Resume
+    </a>
+    <button class="schedule-btn" (click)="openInterviewModal()">
+
+      Schedule Interview
+
+    </button>
+    <!-- Status -->
+    <div class="status-update">
+
+      <select [(ngModel)]="selectedStatus">
+
+        @for(
+        status of statuses;
+        track status
+        ) {
+
+        <option [value]="status">
+
+          {{ status }}
+
+        </option>
+
+        }
+
+      </select>
+
+      <button class="update-btn" (click)="updateStatus()">
+        Update
+      </button>
+
+    </div>
+
+  </div>
+  @if(showInterviewModal()) {
+
+  <app-schedule-interview-modal [applicationId]="
+      application.applicationId
+    " [candidateName]="
+      application.candidateName
+    " (closed)="closeInterviewModal()" (scheduled)="onInterviewScheduled()" />
+
+  }
+
+</div>

@@ -1,0 +1,45 @@
+.status-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0.55rem 1rem;
+
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  font-weight: 700;
+}
+
+.scheduled {
+  background: #dbeafe;
+
+  color: #2563eb;
+}
+
+.confirmed {
+  background: #dcfce7;
+
+  color: #16a34a;
+}
+
+.rescheduled {
+  background: #ede9fe;
+
+  color: #7c3aed;
+}
+
+.cancelled {
+  background: #fee2e2;
+
+  color: #dc2626;
+}
+
+.completed {
+  background: #e2e8f0;
+
+  color: #475569;
+}

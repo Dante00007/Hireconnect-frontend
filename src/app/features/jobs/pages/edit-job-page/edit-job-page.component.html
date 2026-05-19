@@ -1,0 +1,36 @@
+<div class="edit-job-page">
+
+  @if(loading()) {
+
+    <div class="loading-section">
+
+      <div class="loader"></div>
+
+      <p>Loading job...</p>
+
+    </div>
+
+  }
+  @else if(error()) {
+    <div class="error-inline">
+
+      <p>{{ error() }}</p>
+
+    </div>
+  }
+
+  @else if(job()) {
+
+    <app-job-form
+
+      [isEditMode]="true"
+
+      [job]="job()"
+
+      (jobSaved)="onJobSaved()"
+
+    />
+
+  }
+
+</div>

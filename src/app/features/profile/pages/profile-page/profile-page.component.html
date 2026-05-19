@@ -1,0 +1,230 @@
+<div class="profile-page">
+
+  <!-- Hero Section -->
+
+  @if(loading()) {
+
+  <div class="loading-section">
+
+    <div class="loader"></div>
+
+    <p>Loading profile...</p>
+
+  </div>
+
+  }@else if(error()) {
+
+  <app-error-state title="Failed to Load Profile" [message]="error()!" buttonText="Retry"
+    (retry)="loadProfile()" />
+  }
+  <!-- Profile Details -->
+
+  @else if(!isEditing() && !profile()) {
+
+  <div class="empty-profile animate-fade-in">
+
+    <div class="empty-icon">
+      👤
+    </div>
+
+    <h2>No Profile Found</h2>
+
+    <p>
+      You haven't created your profile yet.
+      Start building your professional identity now.
+    </p>
+
+    <button class="create-profile-btn hover-lift" (click)="openEdit()">
+      Create Profile
+    </button>
+
+  </div>
+  }
+  @else if(!isEditing() && profile()) {
+  <div class="profile-hero animate-fade-in">
+
+    <div class="hero-content">
+
+      @if(authService.currentUser()?.role === 'Candidate') {
+        <img [src]="profile()?.profileImageUrl" class="profile-image" alt="Profile Image" />
+
+        @if(profile()?.resumeUrl) {
+          <a [href]="profile()?.resumeUrl   " target="_blank" class="resume-btn">
+            View Resume
+          </a>
+          }
+      }
+      @else if(authService.currentUser()?.role === 'Recruiter') {
+        <img [src]="profile()?.companyLogoUrl" class="company-logo" alt="Company Logo" />
+      }
+      @else {
+        <div class="avatar">
+
+          {{
+          profile()?.fullName
+          ?.charAt(0)
+          ?.toUpperCase()
+          }}
+
+        </div>
+      }
+      <h1>
+        {{
+        profile()?.fullName
+        }}
+      </h1>
+
+      <span class="role-badge">
+        {{
+        authService.currentUser()?.role
+        }}
+      </span>
+
+      <p>
+        Manage your professional identity and account information.
+      </p>
+
+      @if(!isEditing()) {
+
+      <button class="edit-btn hover-lift" (click)="openEdit()">
+        Edit Profile
+      </button>
+
+      }
+
+    </div>
+
+  </div>
+
+  <div class="details-grid animate-fade-in">
+
+    <!-- Full Name -->
+    <div class="info-card hover-lift">
+
+      <h3>Full Name</h3>
+
+      <p>
+        {{ profile()?.fullName }}
+      </p>
+
+    </div>
+
+    <!-- Email -->
+    <div class="info-card hover-lift">
+
+      <h3>Email</h3>
+
+      <p>
+        {{ profile()?.email }}
+      </p>
+
+    </div>
+
+    <!-- Candidate Fields -->
+    @if(profile()?.userType === 'Candidate') {
+
+    <div class="info-card hover-lift">
+
+      <h3>Skills</h3>
+
+      <p>
+        {{ profile()?.skills }}
+      </p>
+
+    </div>
+
+    <div class="info-card hover-lift">
+
+      <h3>Experience</h3>
+
+      <p>
+        {{ profile()?.experience }} years
+      </p>
+
+    </div>
+
+    }
+
+    <!-- Recruiter Fields -->
+    @if(profile()?.userType === 'Recruiter') {
+
+    <div class="info-card hover-lift">
+
+      <h3>Company</h3>
+
+      <p>
+        {{ profile()?.companyName }}
+      </p>
+
+    </div>
+
+    <div class="info-card hover-lift">
+
+      <h3>Industry</h3>
+
+      <p>
+        {{ profile()?.industry }}
+      </p>
+
+    </div>
+
+    }
+
+    <!-- Address -->
+    <div class="info-card hover-lift full-card">
+
+      <h3>Address</h3>
+
+      <p>
+
+        {{ profile()?.address?.houseNo }},
+        {{ profile()?.address?.street }},
+
+        {{ profile()?.address?.city }},
+        {{ profile()?.address?.state }}
+
+        - {{ profile()?.address?.pincode }}
+
+      </p>
+
+    </div>
+
+  </div>
+
+  }
+  <!-- Edit Forms -->
+  @if(isEditing()) {
+
+  <div class="edit-section animate-fade-in">
+
+    <div class="edit-container">
+
+      <div class="edit-header">
+
+        <h2>Edit Profile</h2>
+
+        <button class="cancel-btn" (click)="closeEdit()">
+          Cancel
+        </button>
+
+      </div>
+
+      @if(authService.currentUser()?.role === 'Candidate') {
+
+      <app-candidate-profile-form [isEditMode]="!!profile()" [profile]="profile()" (profileSaved)="onProfileSaved()" />
+
+      }
+
+      @else if(authService.currentUser()?.role === 'Recruiter') {
+
+      <app-recruiter-profile-form [isEditMode]="!!profile()" [profile]="profile()" (profileSaved)="onProfileSaved()" />
+
+      }
+
+    </div>
+
+  </div>
+
+  }
+
+</div>

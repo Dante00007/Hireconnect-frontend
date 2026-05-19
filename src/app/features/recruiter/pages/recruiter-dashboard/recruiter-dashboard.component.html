@@ -1,0 +1,160 @@
+@if(loading()) {
+  <app-page-loader message="Loading profile..." />
+}@else if(error()) {
+  <app-error-state title="Failed to Load Profile" [message]="error()!" buttonText="Retry" (retry)="loadProfile()" />
+}
+@else{
+<div class="dashboard-page">
+
+  <!-- Hero -->
+  <div class="dashboard-hero animate-fade-in">
+
+    <div class="hero-content">
+
+      <div class="avatar">
+
+        @if(profile()?.companyLogoUrl) {
+
+        <img [src]="
+                profile()?.companyLogoUrl
+              " class="company-logo" alt="Company Logo" />
+
+        }
+
+        @else {
+
+        <span>
+
+          {{
+          profile()?.companyName
+          ?.charAt(0)
+          }}
+
+        </span>
+
+        }
+
+
+      </div>
+
+      <div>
+
+        <h1>
+          Welcome Back Recruiter 👋
+        </h1>
+
+        <p>
+          Manage your hiring pipeline and
+          discover top talent efficiently.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid animate-fade-in">
+
+    <!-- <div class="stat-card hover-lift">
+
+      <h2>12</h2>
+
+      <p>Active Jobs</p>
+
+    </div>
+
+    <div class="stat-card hover-lift">
+
+      <h2>87</h2>
+
+      <p>Total Applicants</p>
+
+    </div>
+
+    <div class="stat-card hover-lift">
+
+      <h2>23</h2>
+
+      <p>Interviews Scheduled</p>
+
+    </div> -->
+
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="actions-section animate-fade-in">
+
+    <h2>Quick Actions</h2>
+
+    <div class="actions-grid">
+
+      <!-- Create -->
+      <a routerLink="/recruiter/jobs/create" class="action-card hover-lift">
+
+        <div class="action-icon">
+          ➕
+        </div>
+
+        <h3>Create Job</h3>
+
+        <p>
+          Post a new opportunity and
+          attract candidates.
+        </p>
+
+      </a>
+
+      <!-- Manage -->
+      <a routerLink="/recruiter/jobs" class="action-card hover-lift">
+
+        <div class="action-icon">
+          💼
+        </div>
+
+        <h3>Manage Jobs</h3>
+
+        <p>
+          Edit, update, and track your
+          active job postings.
+        </p>
+
+      </a>
+
+      <!-- Profile -->
+      <a routerLink="/profile" class="action-card hover-lift">
+
+        <div class="action-icon">
+          👤
+        </div>
+
+        <h3>Recruiter Profile</h3>
+
+        <p>
+          Keep your recruiter information
+          updated and professional.
+        </p>
+
+      </a>
+
+      <a routerLink="/recruiter/analytics" class="action-card hover-lift">
+
+        <div class="action-icon">
+          📊
+        </div>
+        <h3>Analytics</h3>
+        <p>
+          Gain insights into your hiring
+          performance and trends.
+        </p>
+
+      </a>
+
+
+    </div>
+
+  </div>
+
+</div>
+}

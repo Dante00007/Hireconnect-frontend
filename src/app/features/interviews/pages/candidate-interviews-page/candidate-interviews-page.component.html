@@ -1,0 +1,70 @@
+<div class="interviews-page">
+
+  <!-- Hero -->
+  <div class="page-hero animate-fade-in">
+
+    <h1>
+      My Interviews 🎯
+    </h1>
+
+    <p>
+      Track and manage your upcoming interviews.
+    </p>
+
+  </div>
+
+  <!-- Loading -->
+  @if(loading()) {
+
+  <app-page-loader message="Loading your interviews..." />
+
+  }
+  @else if(error()) {
+
+  <app-error-state title="Failed to Load Interviews" [message]="error()!" buttonText="Retry"
+    (retry)="loadInterviews()" />
+  }
+
+  <!-- Empty -->
+  @else if(
+  interviews().length === 0
+  ) {
+
+  <div class="empty-state">
+
+    <div class="empty-icon">
+      📅
+    </div>
+
+    <h2>
+      No Interviews Scheduled
+    </h2>
+
+    <p>
+      Interviews scheduled by recruiters
+      will appear here.
+    </p>
+
+  </div>
+
+  }
+
+  <!-- Interviews -->
+  @else {
+
+  <div class="interviews-grid">
+
+    @for(
+    interview of interviews();
+    track interview.interviewId
+    ) {
+
+    <app-interview-card [interview]="interview" role="Candidate" (confirm)="confirmInterview($event)" />
+
+    }
+
+  </div>
+
+  }
+
+</div>

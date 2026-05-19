@@ -1,0 +1,157 @@
+<div class="profile-page">
+
+  <form class="profile-form" [formGroup]="recruiterForm" (ngSubmit)="submit()">
+
+    <!-- Header -->
+    <div class="form-header animate-fade-in">
+
+      <h1>
+        {{
+        isEditMode
+        ? 'Edit Candidate Profile'
+        : 'Create Candidate Profile'
+        }}
+      </h1>
+
+      <p>
+        Set up your company identity and start hiring talent.
+      </p>
+
+    </div>
+
+    <!-- Personal Info -->
+    <div class="form-card animate-fade-in">
+
+      <h2>Personal Information</h2>
+
+      <div class="form-grid">
+
+        <div class="form-field">
+
+          <label>First Name</label>
+
+          <input type="text" formControlName="firstName" placeholder="Enter first name" />
+
+        </div>
+
+        <div class="form-field">
+
+          <label>Last Name</label>
+
+          <input type="text" formControlName="lastName" placeholder="Enter last name" />
+
+        </div>
+
+        <div class="form-field full-width">
+
+          <label>Email</label>
+
+          <input type="email" formControlName="email" placeholder="Enter email" />
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Company Info -->
+    <div class="form-card animate-fade-in">
+
+      <h2>Company Information</h2>
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label>Company Name</label>
+
+          <input type="text" formControlName="companyName" placeholder="Enter company name" />
+
+        </div>
+
+        <div class="form-field">
+
+          <label>Company Size</label>
+
+          <input type="text" formControlName="companySize" placeholder="50-100 employees" />
+
+        </div>
+
+        <div class="form-field">
+
+          <label>Industry</label>
+
+          <input type="text" formControlName="industry" placeholder="Software, Finance..." />
+
+        </div>
+
+        <div class="form-field full-width">
+
+          <label>Website</label>
+
+          <input type="text" formControlName="website" placeholder="https://company.com" />
+
+        </div>
+
+        <div class="form-field full-width">
+
+          <label>Upload Profile Image </label>
+
+          <div class="upload-box">
+
+            <input type="file" accept=".jpg, .jpeg, .png" (change)="onCompanyLogoSelected($event)" />
+
+            @if(selectedCompanyLogo) {
+
+            <div class="file-preview">
+
+              📄 {{ selectedCompanyLogo.name }}
+
+            </div>
+
+            }
+            @else {
+
+            <p>
+              Drag and drop or select your logo image
+            </p>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Address -->
+    <app-address-form [addressGroup]="recruiterForm.controls.address">
+    </app-address-form>
+    @if(error()) {
+
+    <div class="error-inline animate-fade-in">
+      {{ error() }}
+    </div>
+    }
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn hover-lift">
+      @if(!loading()) {
+        {{
+        isEditMode
+        ? 'Update Profile'
+        : 'Create Profile'
+        }}
+      }
+       @else {
+         Processing...
+       }
+    </button>
+
+  </form>
+
+</div>

@@ -1,0 +1,50 @@
+.cta-section {
+    padding: 4rem 2rem 5rem;
+}
+
+.cta-box {
+    max-width: 1000px;
+
+    margin: auto;
+
+    text-align: center;
+
+    padding: 4rem;
+
+    border-radius: 36px;
+
+    background:
+        linear-gradient(to right,
+            #2563eb,
+            #7c3aed);
+
+    color: white;
+}
+
+.cta-box h2 {
+    font-size: 3rem;
+
+    margin-bottom: 1rem;
+}
+
+.cta-box p {
+    font-size: 1.2rem;
+
+    margin-bottom: 2rem;
+}
+
+.cta-btn {
+    display: inline-block;
+
+    padding: 1rem 2rem;
+
+    border-radius: 16px;
+
+    background: white;
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}

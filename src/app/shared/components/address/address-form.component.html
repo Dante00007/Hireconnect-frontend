@@ -1,0 +1,57 @@
+<div class="address-card" [formGroup]="addressGroup">
+
+  <div class="card-header">
+    <h2>Address Details</h2>
+    <p>Tell us where you're located</p>
+  </div>
+
+  <div class="form-grid">
+
+    <div class="form-field full-width">
+      <label>House No</label>
+      <input
+        type="text"
+        formControlName="houseNo"
+        placeholder="Enter house number"
+      />
+    </div>
+
+    <div class="form-field full-width">
+      <label>Street</label>
+      <input
+        type="text"
+        formControlName="street"
+        placeholder="Enter street name"
+      />
+    </div>
+
+    <div class="form-field">
+      <label>City</label>
+      <input
+        type="text"
+        formControlName="city"
+        placeholder="Enter city"
+      />
+    </div>
+
+    <div class="form-field">
+      <label>State</label>
+      <input
+        type="text"
+        formControlName="state"
+        placeholder="Enter state"
+      />
+    </div>
+
+    <div class="form-field full-width">
+      <label>Pincode</label>
+      <input
+        type="text"
+        formControlName="pincode"
+        placeholder="Enter pincode"
+      />
+    </div>
+
+  </div>
+
+</div>

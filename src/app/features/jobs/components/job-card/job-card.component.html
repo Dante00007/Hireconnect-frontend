@@ -1,0 +1,113 @@
+<div class="job-card hover-lift animate-fade-in">
+
+  <!-- Header -->
+  <div class="job-header">
+
+    <div>
+
+      <h2>
+        {{ job.title }}
+      </h2>
+
+      <p class="category">
+        {{ job.category }}
+      </p>
+
+    </div>
+
+    <span class="job-type">
+
+      {{ job.type }}
+
+    </span>
+
+  </div>
+
+  <!-- Description -->
+  <p class="description">
+
+    {{ job.description }}
+
+  </p>
+
+  <!-- Info -->
+  <div class="job-info">
+
+    <span>
+      📍 {{ job.location }}
+    </span>
+
+    <span>
+      💼 {{ job.experienceRequired }} yrs
+    </span>
+
+  </div>
+
+  <!-- Salary -->
+  <div class="salary">
+
+    ₹ {{ job.salaryMin }}
+    -
+    ₹ {{ job.salaryMax }}
+
+  </div>
+
+  <!-- Skills -->
+  <div class="skills">
+
+    @for(skill of job.skills; track skill) {
+
+    <span class="skill-chip">
+
+      {{ skill }}
+
+    </span>
+
+    }
+
+  </div>
+
+  <!-- Actions -->
+  @if(showActions) {
+
+  <div class="actions">
+
+    <button class="edit-btn" [routerLink]="[
+          '/recruiter/jobs/edit',
+          job.jobId
+        ]">
+      Edit
+    </button>
+
+    <button class="delete-btn" (click)="delete.emit(job.jobId)">
+      Delete
+    </button>
+
+    <button class="applicants-btn" [routerLink]="[
+    '/recruiter/jobs',
+    job.jobId,
+    'applications'
+  ]">
+      Applicants
+    </button>
+
+  </div>
+
+  }
+
+  @if(showApplyButton) {
+
+  <div class="candidate-actions">
+
+    <button class="apply-btn" [routerLink]="[
+       '/candidate/jobs',
+        job.jobId
+      ]">
+      View Details
+    </button>
+
+  </div>
+
+  }
+
+</div>

@@ -1,0 +1,227 @@
+<div class="profile-page">
+
+  <form class="profile-form" [formGroup]="candidateForm" (ngSubmit)="submit()">
+
+    <!-- Header -->
+    <div class="form-header animate-fade-in">
+
+      <h1>
+        {{
+        isEditMode
+        ? 'Edit Candidate Profile'
+        : 'Create Candidate Profile'
+        }}
+      </h1>
+
+      <p>
+        Build your professional identity and start applying for jobs.
+      </p>
+
+    </div>
+
+    <!-- Basic Info -->
+    <div class="form-card animate-fade-in">
+
+      <h2>Basic Information</h2>
+
+      <div class="form-grid">
+
+        <div class="form-field">
+
+          <label>First Name</label>
+
+          <input type="text" formControlName="firstName" placeholder="Enter first name" [class.invalid]="
+      candidateForm.get('firstName')?.invalid &&
+      candidateForm.get('firstName')?.touched
+    " />
+
+          @if(hasError('firstName', 'required')) {
+
+          <small class="error-text">
+            First name is required
+          </small>
+
+          }
+
+          @if(hasError('firstName', 'minlength')) {
+
+          <small class="error-text">
+            Minimum 2 characters required
+          </small>
+
+          }
+
+        </div>
+
+
+        <div class="form-field">
+
+          <label>Last Name</label>
+
+          <input type="text" formControlName="lastName" placeholder="Enter lastName name" [class.invalid]="
+          candidateForm.get('lastName')?.invalid &&
+          candidateForm.get('lastName')?.touched
+        " />
+
+          @if(hasError('lastName', 'required')) {
+
+          <small class="error-text">
+            Last name is required
+          </small>
+
+          }
+
+          @if(hasError('lastName', 'minlength')) {
+
+          <small class="error-text">
+            Minimum 2 characters required
+          </small>
+
+          }
+
+        </div>
+
+        <div class="form-field">
+          <label>Email</label>
+
+          <input type="email" formControlName="email" placeholder="Enter email" />
+
+
+          @if(hasError('email', 'email')) {
+
+          <small class="error-text">
+            Enter valid email
+          </small>
+
+          }
+        </div>
+
+        <div class="form-field">
+          <label>Mobile</label>
+
+          <input type="text" formControlName="mobile" placeholder="Enter mobile number" />
+          @if(hasError('mobile', 'pattern')) {
+          <small class="error-text">
+            Enter valid 10 digit mobile number
+          </small>
+          }
+        </div>
+
+        <div class="form-field">
+          <label>Date of Birth</label>
+
+          <input type="date" formControlName="dob" />
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Professional -->
+    <div class="form-card animate-fade-in">
+
+      <h2>Professional Details</h2>
+
+      <div class="form-grid">
+
+        <div class="form-field full-width">
+
+          <label>Skills</label>
+
+          <input type="text" formControlName="skills" placeholder="Angular, Java, Spring Boot..." />
+
+        </div>
+
+        <div class="form-field">
+
+          <label>Experience</label>
+
+          <input type="number" formControlName="experience" placeholder="Years of experience" min="0"/>
+
+        </div>
+
+        <div class="form-field full-width">
+
+          <label>Upload Resume (PDF)</label>
+
+          <div class="upload-box">
+
+            <input type="file" accept=".pdf" (change)="onResumeSelected($event)" />
+
+            @if(selectedResume) {
+
+            <div class="file-preview">
+
+              📄 {{ selectedResume.name }}
+
+            </div>
+
+            }
+            @else {
+
+            <p>
+              Drag and drop or select your resume PDF
+            </p>
+
+            }
+
+          </div>
+
+        </div>
+        <div class="form-field full-width">
+        
+          <label>Upload Profile Image </label>
+        
+          <div class="upload-box">
+        
+            <input type="file" accept=".jpg, .jpeg, .png" (change)="onProfileImageSelected($event)" />
+        
+            @if(selectedProfileImage) {
+        
+            <div class="file-preview">
+        
+              📄 {{ selectedProfileImage.name }}
+        
+            </div>
+        
+            }
+            @else {
+        
+            <p>
+              Drag and drop or select your profile image
+            </p>
+        
+            }
+        
+          </div>
+        
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Address -->
+    <app-address-form [addressGroup]="candidateForm.controls.address" />
+    
+    @if(error()) {
+
+    <p class="error-text">
+      {{ error() }}
+    </p>
+    }
+
+    <!-- Submit -->
+    <button type="submit" class="submit-btn hover-lift" [disabled]="candidateForm.invalid">
+      @if(!loading()){
+        {{
+        isEditMode
+        ? 'Update Profile'
+        : 'Create Profile'
+      }}}@else {
+        Processing...
+      }
+    </button>
+  </form>
+
+</div>

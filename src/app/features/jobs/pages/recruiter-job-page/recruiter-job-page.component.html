@@ -1,0 +1,75 @@
+<div class="jobs-page">
+
+  <!-- Header -->
+  <div class="page-header">
+
+    <div>
+
+      <h1>
+        My Job Postings
+      </h1>
+
+      <p>
+        Manage and track your active jobs.
+      </p>
+
+    </div>
+
+    <button
+      routerLink="/recruiter/jobs/create"
+      class="create-btn hover-lift"
+    >
+      + Create Job
+    </button>
+
+  </div>
+  @if(loading()) {
+    <app-page-loader message="Loading Jobs..."/>
+  }
+  <!-- Loading -->
+  @else if(error()) {
+
+    <app-error-state title="Failed to Load Jobs" [message]="error()!" (retry)="loadJobs()" />
+
+  }
+
+  <!-- Empty -->
+  @else if(jobs().length === 0) {
+
+    <div class="empty-state">
+
+      <div class="empty-icon">
+        💼
+      </div>
+
+      <h2>No Jobs Posted Yet</h2>
+
+      <p>
+        Start attracting candidates by
+        creating your first job posting.
+      </p>
+
+    </div>
+
+  }
+
+  <!-- Grid -->
+  @else {
+
+    <div class="jobs-grid">
+
+      @for(job of jobs(); track job.jobId) {
+
+        <app-job-card
+          [job]="job"
+          [showActions]="true"
+          (delete)="deleteJob($event)"
+        />
+
+      }
+
+    </div>
+
+  }
+
+</div>

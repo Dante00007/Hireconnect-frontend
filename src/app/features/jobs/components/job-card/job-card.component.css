@@ -1,0 +1,213 @@
+.job-card {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 2rem;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.08);
+
+  display: flex;
+
+  /* height: 100%; */
+
+  flex-direction: column;
+
+  gap: 1.2rem;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.job-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 1rem;
+}
+
+.job-header h2 {
+  min-height: 70px;
+  margin: 0;
+
+  color: var(--primary-color);
+
+  font-size: 1.4rem;
+}
+
+.category {
+  margin-top: 0.4rem;
+
+  color: #64748b;
+}
+
+.job-type {
+  background:
+    linear-gradient(135deg,
+      var(--accent-color),
+      var(--secondary-color));
+
+  color: white;
+
+  padding: 0.5rem 1rem;
+
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.description {
+  color: #475569;
+
+  line-height: 1.8;
+  flex-grow: 1;
+
+  min-height: 120px;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.job-info {
+  display: flex;
+
+  gap: 1.5rem;
+
+  flex-wrap: wrap;
+
+  color: #64748b;
+
+  font-size: 0.95rem;
+}
+
+.salary {
+  font-size: 1.2rem;
+
+  font-weight: 700;
+
+  color: var(--secondary-color);
+}
+
+.skills {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.8rem;
+  min-height: 100px;
+
+  align-content: flex-start;
+}
+
+.skill-chip {
+  background: #eef2ff;
+
+  color: var(--accent-color);
+
+  padding: 0.5rem 1rem;
+
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+
+  gap: 1rem;
+
+  margin-top: auto;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+
+  padding: 0.9rem 1.2rem;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.edit-btn {
+  background: var(--accent-color);
+
+  color: white;
+}
+
+.delete-btn {
+  background: #ef4444;
+
+  color: white;
+}
+
+.candidate-actions {
+  margin-top: auto;
+}
+
+.apply-btn {
+  width: 100%;
+
+  border: none;
+
+  padding: 1rem;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(135deg,
+      var(--accent-color),
+      var(--secondary-color));
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.apply-btn:hover {
+  transform: translateY(-2px);
+
+  opacity: 0.95;
+}
+
+.applicants-btn {
+  border: none;
+
+  padding: 0.9rem 1.2rem;
+
+  border-radius: 12px;
+
+  background: #0f172a;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}

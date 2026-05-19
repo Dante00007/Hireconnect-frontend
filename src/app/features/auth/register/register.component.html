@@ -1,0 +1,53 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="header">
+      <h2>Create your Account</h2>
+      <p>Join HireConnect to bridge your professional gap</p>
+    </div>
+
+    <form (submit)="$event.preventDefault(); onSubmit()">
+      <div class="role-selector">
+        <button type="button" 
+                [class.active]="role() === 'Candidate'" 
+                (click)="role.set('Candidate')">
+          Candidate
+        </button>
+        <button type="button" 
+                [class.active]="role() === 'Recruiter'" 
+                (click)="role.set('Recruiter')">
+          Recruiter
+        </button>
+      </div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" 
+               [ngModel]="email()" 
+               (ngModelChange)="email.set($event)"
+               [ngModelOptions]="{standalone: true}"
+               placeholder="name@company.com" 
+               required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" 
+               [ngModel]="password()" 
+               (ngModelChange)="password.set($event)"
+               [ngModelOptions]="{standalone: true}"
+               placeholder="Min. 6 characters" 
+               required>
+      </div>
+
+      <button type="submit" 
+              class="btn-submit" 
+              [disabled]="!isFormValid() || isLoading()">
+        @if (isLoading()) {
+          <span class="loader"></span>
+        } @else {
+          Create Account
+        }
+      </button>
+    </form>
+  </div>
+</div>

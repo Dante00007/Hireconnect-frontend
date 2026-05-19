@@ -1,0 +1,105 @@
+.notification-container {
+  position: relative;
+}
+
+.bell-trigger {
+  position: relative;
+
+  font-size: 1.4rem;
+
+  cursor: pointer;
+
+  width: 44px;
+
+  height: 44px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+.bell-trigger:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.badge {
+  position: absolute;
+
+  top: -2px;
+
+  right: -2px;
+
+  min-width: 20px;
+
+  height: 20px;
+
+  border-radius: 999px;
+
+  background: #ef4444;
+
+  color: white;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0 6px;
+}
+
+.notification-dropdown {
+  position: absolute;
+
+  top: 55px;
+
+  right: 0;
+
+  width: 360px;
+
+  max-height: 500px;
+
+  overflow-y: auto;
+
+  background: white;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 40px rgba(15,23,42,0.15);
+
+  border: 1px solid #e2e8f0;
+
+  z-index: 1000;
+}
+
+.dropdown-header {
+  padding: 1.2rem;
+
+  border-bottom:
+    1px solid #e2e8f0;
+}
+
+.dropdown-header h3 {
+  margin: 0;
+
+  color: var(--primary-color);
+}
+
+.empty-state {
+  padding: 2rem;
+
+  text-align: center;
+
+  color: #64748b;
+}

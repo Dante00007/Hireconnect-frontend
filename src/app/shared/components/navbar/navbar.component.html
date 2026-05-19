@@ -1,0 +1,72 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo" routerLink="/">
+      <span class="logo-icon">H</span>
+      <span class="logo-text">HireConnect</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+
+      @if (!authService.isAuthenticated()) {
+      <li><a routerLink="/auth/login" class="nav-item">Login</a></li>
+      <li>
+        <a routerLink="/auth/register" class="btn-register">
+          Join Now
+          <span class="sparkle">✨</span>
+        </a>
+      </li>
+      }
+
+      @if (authService.currentUser()?.role === 'Candidate') {
+      <li><a routerLink="/candidate/jobs">Find Jobs</a></li>
+      <li>
+        <a routerLink="/candidate/applications">
+          My Applications
+        </a>
+      </li>
+      <li>
+        <a routerLink="/candidate/interviews">
+          Interviews
+        </a>
+      </li>
+      }
+      @else if (authService.currentUser()?.role === 'Recruiter') {
+      <li><a routerLink="/recruiter/dashboard">Hiring Panel</a></li>
+      <li>
+        <a routerLink="/recruiter/interviews">
+          Interviews
+        </a>
+      </li>
+      }
+
+      @if (authService.isAuthenticated()) {
+      <app-notification-bell />
+      <li class="profile-menu-container">
+        <div class="profile-trigger" (click)="toggleDropdown()">
+          <div class="avatar-circle">
+            {{ authService.currentUser()?.email?.charAt(0)?.toUpperCase() }}
+          </div>
+          <span class="dropdown-arrow" [class.rotated]="isDropdownOpen()">▾</span>
+        </div>
+
+        @if (isDropdownOpen()) {
+        <div class="profile-dropdown">
+          <div class="user-info">
+            <p class="user-email">{{ authService.currentUser()?.email }}</p>
+            <span class="user-role">{{ authService.currentUser()?.role }}</span>
+          </div>
+          <hr>
+          <a routerLink='/profile' (click)="isDropdownOpen.set(false)">
+            👤 Profile
+          </a>
+          <button (click)="onLogout()" class="dropdown-logout">
+            🚪 Logout
+          </button>
+        </div>
+        }
+      </li>
+      }
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,87 @@
+
+<div class="modal-overlay">
+
+  <div class="modal-card animate-fade-in">
+
+    <!-- Header -->
+    <div class="modal-header">
+
+      <h2>
+        Apply To Job
+      </h2>
+
+      <button class="close-btn" (click)="close()">
+        ✕
+      </button>
+
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="applyForm" (ngSubmit)="submit()">
+
+      <div class="form-field">
+
+        <label>
+          Cover Letter
+        </label>
+
+        <textarea rows="8" formControlName="coverLetter" placeholder="
+Explain why you're a great fit...
+"></textarea>
+
+      </div>
+
+      <!-- Validation -->
+      @if(
+      applyForm.controls.coverLetter.touched
+      &&
+      applyForm.controls.coverLetter.invalid
+      ) {
+
+      <p class="error-text">
+
+        Cover letter must contain
+        at least 20 characters.
+
+      </p>
+
+      }@else if(error()){
+        <p class="error-text">
+          {{ error() }}
+        </p>
+      }
+
+      <!-- Actions -->
+      <div class="actions">
+
+        <button type="button" class="cancel-btn" (click)="close()">
+          Cancel
+        </button>
+
+        <button type="submit" class="submit-btn hover-lift" [disabled]="loading()">
+
+          @if(!loading()) {
+
+          <span>
+            Submit Application
+          </span>
+
+          }
+
+          @else {
+
+          <span>
+            Applying...
+          </span>
+
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
