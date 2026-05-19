@@ -1,8 +1,7 @@
-
 export const environment = {
-
     production: false,
 
-    apiUrl: 'http://localhost:5001'
+    apiUrl: 'https://hireconnect-gateway-pddk.onrender.com',
 
+    notificationHubUrl: 'https://hireconnect-gateway-pddk.onrender.com/notificationHub'
 };

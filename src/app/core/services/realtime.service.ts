@@ -17,7 +17,8 @@ import { environment } from '../../../environments/environment';
     providedIn: 'root'
 })
 export class RealtimeService {
-    private readonly API_URL = `${environment.apiUrl}/notificationHub`;
+    private readonly HUB_URL =
+        environment.notificationHubUrl;
 
     private notificationService =
         inject(NotificationService);
@@ -39,7 +40,7 @@ export class RealtimeService {
             new signalR.HubConnectionBuilder()
 
                 .withUrl(
-                    `${this.API_URL}?userId=${user.userId}`
+                    `${this.HUB_URL}?userId=${user.userId}`
                 )
 
                 .withAutomaticReconnect()
